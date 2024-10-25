@@ -2,11 +2,15 @@
 const USERS = [
   {
     id: 1,
-    name: "John",
+    name: "foo",
   },
   {
     id: 2,
-    name: "Doe",
+    name: "bar",
+  },
+  {
+    id: 3,
+    name: "baz",
   },
 ];
 
@@ -25,7 +29,10 @@ class User {
 // ROUTER
 // calls respective controllers
 class Router {
-  url: string; // url
+  url: string;
+  constructor(url: string) {
+    this.url = url;
+  }
 }
 
 /*###########################################################*/
@@ -45,10 +52,9 @@ class UsersController {
 // Home ROUTE calls controller
 class HomeController extends Router {
   constructor(url: string) {
-    super();
-    this.url = url;
+    super(url);
 
-    if (url === "/") {
+    if (this.url === "/") {
       this.Index();
     }
   }
@@ -66,7 +72,7 @@ class HomeController extends Router {
 }
 
 // change this to call router directly
-// const home_route = new HomeController("/");
+new HomeController("/");
 
 // ** APP LISTENING ON PORT 3000 **
 
