@@ -29,9 +29,9 @@ class User {
 // ROUTER
 // calls respective controllers
 class Router {
-  url: string;
-  constructor(url: string) {
-    this.url = url;
+  action: string | undefined;
+  constructor(action: string | undefined) {
+    this.action = action;
   }
 }
 
@@ -41,8 +41,28 @@ class Router {
 // controllers can depend on each other
 // /users | get all users
 // /users/{id} | get single user
-class UsersController {
-  // receive http GET request from client GET /users
+class UsersController extends Router {
+  constructor(action?: string) {
+    super(action);
+    if (this.action === "default") {
+      this.Index();
+    }
+  }
+
+  protected Index() {
+    const users = this.GetUsers();
+
+    // template
+    const users_template = `
+      Users Page
+
+      Number of users: ${users.length}
+    `;
+
+    // render VIEW
+    console.log(users_template);
+  }
+
   // get users from db
   public GetUsers(): User[] {
     // query db
@@ -53,33 +73,47 @@ class UsersController {
 
 // Home ROUTE calls controller
 class HomeController extends Router {
-  constructor(url: string) {
-    super(url);
-
-    if (this.url === "/") {
+  constructor(action?: string) {
+    super(action);
+    if (this.action === "default") {
       this.Index();
     }
   }
 
-  Index() {
+  protected Index() {
     let users_controller = new UsersController();
     const users = users_controller.GetUsers();
 
     // template
-    const users_template = `Number of users: ${users.length}`;
+    const home_template = `
+      Home Page
 
+      Number of users: ${users.length}
+    `;
     // render VIEW
-    console.log(users_template);
+    console.log(home_template);
   }
 }
 
 // change this to call router directly
-new HomeController("/");
 
 // ** APP LISTENING ON PORT 3000 **
 
 // app receives http request
 // handle request using the Router
+const CLIENT_REQUEST_HOME = "/";
+const CLIENT_REQUEST_USERS = "/users";
+// class ROUTE_MAP {
+//   url: string = "";
+//   action: string = "";
+// }
 
-// app receives other http request
+if (CLIENT_REQUEST_HOME === "/") {
+  new HomeController("default");
+}
+
+if (CLIENT_REQUEST_USERS === "/users") {
+  // app receives other http request
+  new UsersController("default");
+}
 //
