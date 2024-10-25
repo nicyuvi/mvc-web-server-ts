@@ -39,6 +39,8 @@ class Router {
 
 // CONTROLLERS
 // controllers can depend on each other
+// /users | get all users
+// /users/{id} | get single user
 class UsersController {
   // receive http GET request from client GET /users
   // get users from db
