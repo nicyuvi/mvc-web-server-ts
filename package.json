@@ -1,0 +1,16 @@
+{
+  "name": "mvc-web-server-ts",
+  "version": "1.0.0",
+  "description": "A web server written in OOP Style Typescript and using an MVC Architecture with 0 dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.8.1",
+    "typescript": "^5.6.3"
+  }
+}
