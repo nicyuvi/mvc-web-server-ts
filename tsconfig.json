@@ -15,6 +15,7 @@
 
     /* If transpiling with TypeScript and running in Node: */
     /* Be sure to set type: module in package.json */
+    /* Allows ESM with TS */
     "module": "nodenext",
     "outDir": "./build", // Output directory for compiled JS files
     "rootDir": "./src", // Root directory of your TypeScript files

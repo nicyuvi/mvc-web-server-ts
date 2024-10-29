@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A web server written in OOP Style Typescript and using an MVC Architecture with 0 dependencies",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
